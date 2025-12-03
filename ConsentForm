@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informed Consent Form - Parking Hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5490;
+            --secondary: #2d7dd2;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-back {
+            margin-bottom: 2rem;
+        }
+
+        .nav-back a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.2s;
+        }
+
+        .nav-back a:hover {
+            gap: 0.75rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .doc-title {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .doc-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .consent-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: #fef3c7;
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+        }
+
+        .info-box {
+            background: #f0f9ff;
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .consent-options {
+            display: grid;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .consent-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 6px;
+        }
+
+        .consent-option label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .consent-option input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .signature-section {
+            background: #f0fdf4;
+            border: 2px dashed #10b981;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .signature-section h3 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.5rem;
+            color: #065f46;
+            margin-bottom: 1.5rem;
+        }
+
+        .signature-line {
+            border-bottom: 2px solid var(--dark);
+            margin: 1.5rem 0;
+            padding-bottom: 0.5rem;
+            min-height: 40px;
+        }
+
+        .signature-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .doc-title {
+                font-size: 2rem;
+            }
+
+            .signature-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .nav-back {
+                display: none;
+            }
+            .consent-section {
+                box-shadow: none;
+                border: 1px solid var(--border);
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-back">
+            <a href="index.html">← Back to Protocol</a>
+        </div>
+
+        <header>
+            <h1 class="doc-title">Informed Consent Form</h1>
+            <p class="doc-subtitle">Usability Testing</p>
+        </header>
+
+        <div class="consent-section">
+            <h2>Study Purpose</h2>
+            <p>You are invited to participate in a usability study of Parking Hero. The purpose of this study is to evaluate the ease of use and effectiveness of the application interface. Your participation will help us identify areas for improvement and ensure the application meets user needs.</p>
+        </div>
+
+        <div class="consent-section">
+            <h2>What You Will Do</h2>
+            <p>If you agree to participate, you will:</p>
+            <ul>
+                <li>Complete a brief background questionnaire (2-3 minutes)</li>
+                <li>Perform three tasks using the campus parking application prototype while thinking aloud (25-30 minutes)</li>
+                <li>Complete brief questionnaires after each task and at the end of the session</li>
+                <li>Participate in a short debriefing discussion (3-5 minutes)</li>
+            </ul>
+            <div class="highlight-box">
+                <strong>Total Time:</strong> Approximately 15-20 minutes
+            </div>
+        </div>
+
+        <div class="consent-section">
+            <h2>Risks and Benefits</h2>
+            <p><strong>Risks:</strong> There are no anticipated risks associated with this study beyond those encountered in everyday use of computer applications. You may experience minor eye strain or fatigue from computer use.</p>
+            <p><strong>Benefits:</strong> You will contribute to the improvement of campus parking services and may receive compensation as indicated during recruitment (if applicable). You will gain insight into the usability testing process.</p>
+        </div>
+
+        <div class="consent-section">
+            <h2>Data Use</h2>
+            <p>We will collect the following information:</p>
+            <ul>
+                <li>Basic demographic information (affiliation, parking frequency)</li>
+                <li>Observations of your interactions with the application</li>
+                <li>Your verbal comments and feedback</li>
+                <li>Responses to questionnaires</li>
+                <li>Photo evidence</li>
+            </ul>
+            <p>This information will be used solely for the purpose of improving the campus parking application design.</p>
+            <div class="info-box">
+                <strong>Your photo will only be used as proof for our professor.</strong>
+            </div>
+        </div>
+
+        <div class="consent-section">
+            <h2>Audio/Video Recording</h2>
+            <p>With your permission, we may audio and/or video record this session for analysis purposes. Recordings will be used only by the research team and will be destroyed after analysis is complete.</p>
+            
+            <div class="consent-options">
+                <div class="consent-option">
+                    <label>
+                        <input type="checkbox"> I consent to audio recording of this session
+                    </label>
+                </div>
+                <div class="consent-option">
+                    <label>
+                        <input type="checkbox"> I do NOT consent to audio recording
+                    </label>
+                </div>
+                <div class="consent-option">
+                    <label>
+                        <input type="checkbox"> I consent to video recording of this session
+                    </label>
+                </div>
+                <div class="consent-option">
+                    <label>
+                        <input type="checkbox"> I do NOT consent to video recording
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="consent-section">
+            <h2>Your Rights as a Participant</h2>
+            <div class="highlight-box">
+                <strong>Your participation in this study is completely voluntary.</strong>
+            </div>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Ask questions at any time before, during, or after the study</li>
+                <li>Decline to answer any question</li>
+                <li>Take breaks as needed</li>
+                <li><strong>Withdraw from the study at any time without penalty or prejudice</strong></li>
+            </ul>
+        </div>
+
+        <div class="consent-section">
+            <h2>Contact Information</h2>
+            <p>If you have questions about this study, please contact:</p>
+            <div class="contact-info">
+                <p><strong>Principal Investigator:</strong> Olivia Foster</p>
+                <p><strong>Email:</strong> <a href="mailto:fostero@mail.gvsu.edu">fostero@mail.gvsu.edu</a></p>
+                <p><strong>Institution:</strong> Grand Valley State University</p>
+            </div>
+        </div>
+
+        <div class="consent-section">
+            <div class="signature-section">
+                <h3>Statement of Consent</h3>
+                <p>By signing below, I acknowledge that:</p>
+                <ul>
+                    <li>I have freely volunteered to participate in this study</li>
+                    <li>I have been informed in advance what my tasks will be and what procedures will be followed</li>
+                    <li>I have been given the opportunity to ask questions and have had my questions answered to my satisfaction</li>
+                    <li>I am aware that I have the right to withdraw consent and discontinue participation at any time without prejudice to my future treatment</li>
+                    <li>I understand how my data will be used and that my confidentiality will be protected</li>
+                </ul>
+
+                <div style="margin-top: 2rem;">
+                    <div style="margin-bottom: 2rem;">
+                        <label style="display: block; font-weight: 600; color: #065f46; margin-bottom: 0.5rem;">
+                            Participant Name (Please Print)
+                        </label>
+                        <div class="signature-line"></div>
+                    </div>
+
+                    <div class="signature-row">
+                        <div>
+                            <label style="display: block; font-weight: 600; color: #065f46; margin-bottom: 0.5rem;">
+                                Participant Signature
+                            </label>
+                            <div class="signature-line"></div>
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; color: #065f46; margin-bottom: 0.5rem;">
+                                Date
+                            </label>
+                            <div class="signature-line"></div>
+                        </div>
+                    </div>
+
+                    <div class="signature-row">
+                        <div>
+                            <label style="display: block; font-weight: 600; color: #065f46; margin-bottom: 0.5rem;">
+                                Researcher Signature
+                            </label>
+                            <div class="signature-line"></div>
+                        </div>
+                        <div>
+                            <label style="display: block; font-weight: 600; color: #065f46; margin-bottom: 0.5rem;">
+                                Date
+                            </label>
+                            <div class="signature-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
