@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEQ Questionnaire - Parking Hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5490;
+            --secondary: #2d7dd2;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-back {
+            margin-bottom: 2rem;
+        }
+
+        .nav-back a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.2s;
+        }
+
+        .nav-back a:hover {
+            gap: 0.75rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .doc-title {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .doc-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .form-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .info-field label {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .input-line {
+            border: none;
+            border-bottom: 2px solid var(--border);
+            padding: 0.5rem 0;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .instructions-box {
+            background: #f0f9ff;
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 6px;
+        }
+
+        .rating-question {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .rating-question h3 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 2rem;
+        }
+
+        .rating-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .rating-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .rating-option:hover {
+            transform: scale(1.1);
+        }
+
+        .rating-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            border: 3px solid var(--primary);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .rating-option input[type="radio"] {
+            display: none;
+        }
+
+        .rating-option input[type="radio"]:checked + .rating-circle {
+            background: var(--primary);
+            color: white;
+            border-color: var(--secondary);
+            box-shadow: 0 6px 12px rgba(26, 84, 144, 0.3);
+        }
+
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding: 0 2rem;
+        }
+
+        .scale-label {
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+            max-width: 150px;
+        }
+
+        .scale-label.left {
+            text-align: left;
+        }
+
+        .scale-label.right {
+            text-align: right;
+        }
+
+        .your-rating {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border: 2px dashed var(--secondary);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .your-rating label {
+            font-weight: 600;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .your-rating input {
+            width: 80px;
+            padding: 0.75rem;
+            font-size: 1.25rem;
+            text-align: center;
+            border: 2px solid var(--secondary);
+            border-radius: 6px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .comments-section {
+            margin-top: 3rem;
+        }
+
+        .comments-section label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .textarea {
+            width: 100%;
+            min-height: 150px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        .textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .thank-you {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-style: italic;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .doc-title {
+                font-size: 2rem;
+            }
+
+            .info-header {
+                grid-template-columns: 1fr;
+            }
+
+            .rating-scale {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .scale-labels {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .scale-label {
+                text-align: center !important;
+            }
+
+            .rating-circle {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .nav-back {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-back">
+            <a href="index.html">← Back to Protocol</a>
+        </div>
+
+        <header>
+            <h1 class="doc-title">SEQ Questionnaire</h1>
+            <p class="doc-subtitle">Single Ease Question - Post-Task Questionnaire</p>
+        </header>
+
+        <div class="form-section">
+            <div class="info-header">
+                <div class="info-field">
+                    <label>Participant Name:</label>
+                    <input type="text" class="input-line" placeholder="Enter ID">
+                </div>
+                <div class="info-field">
+                    <label>Task Number:</label>
+                    <input type="text" class="input-line" placeholder="Task 1, 2, or 3">
+                </div>
+            </div>
+
+            <div class="instructions-box">
+                <strong>Instructions:</strong> Please rate the difficulty of the task you just completed by selecting one number on the scale below.
+            </div>
+
+            <div class="rating-question">
+                <h3>Overall, this task was:</h3>
+                
+                <div class="rating-scale">
+                    <label class="rating-option">
+                        <input type="radio" name="seq-rating" value="1">
+                        <span class="rating-circle">1</span>
+                    </label>
+                    <label class="rating-option">
+                        <input type="radio" name="seq-rating" value="2">
+                        <span class="rating-circle">2</span>
+                    </label>
+                    <label class="rating-option">
+                        <input type="radio" name="seq-rating" value="3">
+                        <span class="rating-circle">3</span>
+                    </label>
+                    <label class="rating-option">
+                        <input type="radio" name="seq-rating" value="4">
+                        <span class="rating-circle">4</span>
+                    </label>
+                    <label class="rating-option">
+                        <input type="radio" name="seq-rating" value="5">
+                        <span class="rating-circle">5</span>
+                    </label>
+                    <label class="rating-option">
+                        <input type="radio" name="seq-rating" value="6">
+                        <span class="rating-circle">6</span>
+                    </label>
+                    <label class="rating-option">
+                        <input type="radio" name="seq-rating" value="7">
+                        <span class="rating-circle">7</span>
+                    </label>
+                </div>
+
+                <div class="scale-labels">
+                    <div class="scale-label left">
+                        <strong>1</strong><br>
+                        Very Difficult
+                    </div>
+                    <div class="scale-label">
+                        <strong>4</strong><br>
+                        Neutral
+                    </div>
+                    <div class="scale-label right">
+                        <strong>7</strong><br>
+                        Very Easy
+                    </div>
+                </div>
+
+                <div class="your-rating">
+                    <label>Your Rating:</label>
+                    <input type="number" min="1" max="7" placeholder="1-7">
+                </div>
+            </div>
+
+            <div class="comments-section">
+                <label>Optional Comments:</label>
+                <p style="color: var(--gray); margin-bottom: 1rem;">Please share any specific difficulties, confusions, or suggestions about this task:</p>
+                <textarea class="textarea" placeholder="Enter your comments here..."></textarea>
+            </div>
+
+            <div class="thank-you">
+                Thank you! Please return this form to the facilitator.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactivity to the rating circles
+        document.querySelectorAll('.rating-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const value = this.querySelector('input[type="radio"]').value;
+                document.querySelector('.your-rating input').value = value;
+            });
+        });
+
+        // Update radio selection when typing in the input
+        document.querySelector('.your-rating input').addEventListener('input', function() {
+            const value = this.value;
+            if (value >= 1 && value <= 7) {
+                const radio = document.querySelector(`input[name="seq-rating"][value="${value}"]`);
+                if (radio) radio.checked = true;
+            }
+        });
+    </script>
+</body>
+</html>
