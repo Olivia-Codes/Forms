@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Hero - Usability Testing Protocol</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5490;
+            --secondary: #2d7dd2;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            animation: slideDown 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-name {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .doc-title {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.6s ease-out both;
+            animation-delay: calc(var(--card-index) * 0.1s);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        h3 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .task-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .task-card h3 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .metric-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin: 0.25rem;
+        }
+
+        .criteria {
+            background: #fef3c7;
+            border-left: 3px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .role {
+            background: #f0fdf4;
+            border-left: 3px solid #10b981;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border-radius: 4px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem 1rem;
+            }
+
+            .project-name {
+                font-size: 2.5rem;
+            }
+
+            .content-card {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        a[href$=".html"]:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(26, 84, 144, 0.2) !important;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .content-card {
+                box-shadow: none;
+                border: 1px solid var(--border);
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="project-name">Parking Hero</h1>
+            <p class="doc-title">Usability Testing Protocol</p>
+        </header>
+
+        <div class="content-card" style="--card-index: 1">
+            <h2>
+                <span class="section-number">1</span>
+                Participant Recruitment
+            </h2>
+            <p><strong>Target users:</strong> Students who park on campus regularly</p>
+            <p><strong>Recruitment criteria:</strong></p>
+            <ul>
+                <li>Students (primary users)</li>
+                <li>Daily or frequent parkers (3-4x per week)</li>
+                <li>Android or iPhone users</li>
+                <li>No prior parking app experience (preferred)</li>
+                <li>Not involved in the project development</li>
+            </ul>
+        </div>
+
+        <div class="content-card" style="--card-index: 2">
+            <h2>
+                <span class="section-number">2</span>
+                Team Member Roles
+            </h2>
+            <div class="role">
+                <strong>Facilitator (Olivia Foster):</strong> Introduces tasks, guides session, asks questions
+            </div>
+            <div class="role">
+                <strong>Observer (Ethan Demarest):</strong> Takes detailed notes, records times and errors
+            </div>
+        </div>
+
+        <div class="content-card" style="--card-index: 3">
+            <h2>
+                <span class="section-number">3</span>
+                Testing Tasks
+            </h2>
+
+            <div class="task-card">
+                <h3>Task 1: Find a Parking Spot (Simple)</h3>
+                <p><strong>Scenario:</strong> You've just arrived on campus and need to find an available parking spot. Use the app to locate where you can park.</p>
+                <div class="criteria">
+                    <strong>Success Criteria:</strong> Participant successfully views available parking spots and begins navigation.
+                </div>
+                <p><span class="metric-tag">Expected Time: 2-4 minutes</span></p>
+            </div>
+
+            <div class="task-card">
+                <h3>Task 2: Campus Event Parking (Moderate)</h3>
+                <p><strong>Scenario:</strong> There's a basketball game on campus today and parking is limited. Use the app to find parking during this busy time.</p>
+                <div class="criteria">
+                    <strong>Success Criteria:</strong> Participant successfully finds a spot from notifications during the busy campus event parking scenario and navigates to spot.
+                </div>
+                <p><span class="metric-tag">Expected Time: 3-5 minutes</span></p>
+            </div>
+
+            <div class="task-card">
+                <h3>Task 3: Emergency Navigation to Vehicle (Complex)</h3>
+                <p><strong>Scenario:</strong> There's an emergency alert on campus. Use the app to get directions back to your parked spot.</p>
+                <div class="criteria">
+                    <strong>Success Criteria:</strong> Participant successfully gets directions back to the parking spot.
+                </div>
+                <p><span class="metric-tag">Expected Time: 2-4 minutes</span></p>
+            </div>
+        </div>
+
+        <div class="content-card" style="--card-index: 4">
+            <h2>
+                <span class="section-number">4</span>
+                Metrics and Questionnaires
+            </h2>
+            <h3>Required Metrics</h3>
+            <ul>
+                <li><strong>Task Completion Rate:</strong> Calculated as (completed tasks / total tasks) × 100%</li>
+                <li><strong>Task Completion Time:</strong> Recording in minutes for each task</li>
+                <li><strong>Error Count:</strong> Critical errors (prevent completion) and non-critical errors (recovered)</li>
+                <li><strong>SEQ (Single Ease Question):</strong> 7-point scale after each task (1=Very Difficult, 7=Very Easy)</li>
+                <li><strong>SUS (System Usability Scale):</strong> 10-question survey after all tasks completed</li>
+            </ul>
+        </div>
+
+        <div class="content-card" style="--card-index: 5">
+            <h2>
+                <span class="section-number">5</span>
+                Data Collection During Test
+            </h2>
+            <p><strong>Record for each participant:</strong></p>
+            <ul>
+                <li>Participant background (student/staff, parking frequency, phone type)</li>
+                <li>Start time and end time for each task</li>
+                <li>Task completion: Success, Partial Success, or Failure</li>
+                <li>Number of critical and non-critical errors</li>
+                <li>SEQ rating immediately after each task</li>
+                <li>Observer notes on behavior, comments, and issues</li>
+                <li>Photos of participant during testing (with permission)</li>
+            </ul>
+        </div>
+
+        <div class="content-card" style="--card-index: 6">
+            <h2>
+                <span class="section-number">6</span>
+                Informed Consent Form
+            </h2>
+            <p>Participants must sign before testing begins. Include:</p>
+            <ul>
+                <li><strong>Study purpose:</strong> Evaluate usability of Campus Parking Application</li>
+                <li><strong>Procedures:</strong> 3 tasks, approximately 15-20 minutes total</li>
+                <li><strong>Voluntary participation:</strong> Can withdraw at any time</li>
+                <li><strong>Confidentiality:</strong> Data identified by participant number only</li>
+                <li><strong>Contact information:</strong> Principal investigator details</li>
+                <li><strong>Signature lines:</strong> Participant name, signature, and date</li>
+            </ul>
+        </div>
+
+        <div class="content-card" style="--card-index: 7">
+            <h2>
+                <span class="section-number">7</span>
+                Debriefing Questions
+            </h2>
+            <p>Ask after completing all tasks and SUS questionnaire:</p>
+            <ol>
+                <li>What did you like most about the app?</li>
+                <li>What did you like least or find most frustrating?</li>
+                <li>Was there anything that surprised you or didn't work as expected?</li>
+                <li>What features would you add or change?</li>
+                <li>Would you use this app? Why or why not?</li>
+                <li>Any other comments or suggestions?</li>
+            </ol>
+        </div>
+
+        <div class="content-card" style="--card-index: 8; background: linear-gradient(135deg, #e0f2fe 0%, #dbeafe 100%);">
+            <h2>
+                <span class="section-number">📄</span>
+                Testing Documents
+            </h2>
+            <p style="margin-bottom: 2rem;">Access all forms and questionnaires needed for conducting usability tests:</p>
+            <div style="display: grid; gap: 1rem;">
+                <a href="data-collection.html" style="display: block; padding: 1.25rem; background: white; border-radius: 8px; text-decoration: none; color: var(--dark); box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s;">
+                    <strong style="color: var(--primary); font-size: 1.1rem;">📋 Data Collection Template</strong>
+                    <p style="margin: 0.5rem 0 0 0; color: var(--gray);">Record participant information, task metrics, and observations during testing sessions</p>
+                </a>
+                <a href="consent-form.html" style="display: block; padding: 1.25rem; background: white; border-radius: 8px; text-decoration: none; color: var(--dark); box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s;">
+                    <strong style="color: var(--primary); font-size: 1.1rem;">✍️ Informed Consent Form</strong>
+                    <p style="margin: 0.5rem 0 0 0; color: var(--gray);">Required consent document explaining study purpose, procedures, and participant rights</p>
+                </a>
+                <a href="seq-questionnaire.html" style="display: block; padding: 1.25rem; background: white; border-radius: 8px; text-decoration: none; color: var(--dark); box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s;">
+                    <strong style="color: var(--primary); font-size: 1.1rem;">⭐ SEQ Questionnaire</strong>
+                    <p style="margin: 0.5rem 0 0 0; color: var(--gray);">Single Ease Question - Quick 7-point scale rating after each task</p>
+                </a>
+                <a href="sus-questionnaire.html" style="display: block; padding: 1.25rem; background: white; border-radius: 8px; text-decoration: none; color: var(--dark); box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.2s;">
+                    <strong style="color: var(--primary); font-size: 1.1rem;">📊 SUS Questionnaire</strong>
+                    <p style="margin: 0.5rem 0 0 0; color: var(--gray);">System Usability Scale - Comprehensive 10-question post-test evaluation</p>
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>Parking Hero Usability Testing Protocol</p>
+            <p>Olivia Foster</p>
+            <p style="margin-top: 1rem; font-size: 0.875rem;">
+                Contact: <a href="mailto:fostero@mail.gvsu.edu" style="color: var(--secondary);">fostero@mail.gvsu.edu</a>
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
