@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Collection Template - Parking Hero</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a5490;
+            --secondary: #2d7dd2;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Work Sans', -apple-system, sans-serif;
+            line-height: 1.7;
+            color: var(--dark);
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-back {
+            margin-bottom: 2rem;
+        }
+
+        .nav-back a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.2s;
+        }
+
+        .nav-back a:hover {
+            gap: 0.75rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .doc-title {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .doc-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+        }
+
+        .form-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .input-line {
+            width: 100%;
+            border: none;
+            border-bottom: 2px solid var(--border);
+            padding: 0.5rem 0;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .input-line:focus {
+            outline: none;
+            border-bottom-color: var(--secondary);
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .task-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid var(--secondary);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .task-section h3 {
+            font-family: 'Crimson Pro', Georgia, serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .time-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            padding: 0.75rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+            resize: vertical;
+            transition: border-color 0.2s;
+        }
+
+        .textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .metric-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row, .time-row {
+                grid-template-columns: 1fr;
+            }
+
+            .doc-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .nav-back {
+                display: none;
+            }
+            .form-section, .task-section {
+                box-shadow: none;
+                border: 1px solid var(--border);
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-back">
+            <a href="index.html">← Back to Protocol</a>
+        </div>
+
+        <header>
+            <h1 class="doc-title">Data Collection Template</h1>
+            <p class="doc-subtitle">Usability Testing</p>
+        </header>
+
+        <div class="form-section">
+            <h2>Session Information</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Participant ID:</label>
+                    <input type="text" class="input-line" placeholder="Enter ID">
+                </div>
+                <div class="form-group">
+                    <label>Date:</label>
+                    <input type="date" class="input-line">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Time:</label>
+                    <input type="time" class="input-line">
+                </div>
+                <div class="form-group">
+                    <label>Facilitator:</label>
+                    <input type="text" class="input-line" value="Olivia Foster" readonly>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Observer:</label>
+                    <input type="text" class="input-line" placeholder="Enter observer name">
+                </div>
+                <div class="form-group">
+                    <label>Test Environment:</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Lab
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Remote
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox"> Other
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Pre-Test Background</h2>
+            <div class="form-group">
+                <label>Affiliation:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> Student</label>
+                    <label class="checkbox-item"><input type="checkbox"> Faculty</label>
+                    <label class="checkbox-item"><input type="checkbox"> Staff</label>
+                    <label class="checkbox-item"><input type="checkbox"> Visitor</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Parking Frequency:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> Daily</label>
+                    <label class="checkbox-item"><input type="checkbox"> 3-4x/week</label>
+                    <label class="checkbox-item"><input type="checkbox"> 1-2x/week</label>
+                    <label class="checkbox-item"><input type="checkbox"> Less than weekly</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Smartphone Type:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> iPhone</label>
+                    <label class="checkbox-item"><input type="checkbox"> Android</label>
+                    <label class="checkbox-item"><input type="checkbox"> Other</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Prior Parking App Experience:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> Yes (specify)</label>
+                    <label class="checkbox-item"><input type="checkbox"> No</label>
+                </div>
+                <input type="text" class="input-line" placeholder="If yes, which app?">
+            </div>
+        </div>
+
+        <div class="task-section">
+            <h3>Task 1: Find a Parking Spot (Simple)</h3>
+            <div class="time-row">
+                <div class="form-group">
+                    <label>Start Time:</label>
+                    <input type="time" class="input-line">
+                </div>
+                <div class="form-group">
+                    <label>End Time:</label>
+                    <input type="time" class="input-line">
+                </div>
+                <div class="form-group">
+                    <label>Total Time (min):</label>
+                    <input type="number" class="input-line" placeholder="Minutes">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Task Completion:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> Complete Success</label>
+                    <label class="checkbox-item"><input type="checkbox"> Partial Success</label>
+                    <label class="checkbox-item"><input type="checkbox"> Failure</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Completion Percentage:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> 0%</label>
+                    <label class="checkbox-item"><input type="checkbox"> 25%</label>
+                    <label class="checkbox-item"><input type="checkbox"> 50%</label>
+                    <label class="checkbox-item"><input type="checkbox"> 75%</label>
+                    <label class="checkbox-item"><input type="checkbox"> 100%</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Critical Errors (count):</label>
+                    <input type="number" class="input-line" placeholder="0">
+                </div>
+                <div class="form-group">
+                    <label>Non-Critical Errors (count):</label>
+                    <input type="number" class="input-line" placeholder="0">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>SEQ Score (1-7): <span class="metric-tag">1 = Very Difficult, 7 = Very Easy</span></label>
+                <input type="number" class="input-line" min="1" max="7" placeholder="Score">
+            </div>
+            <div class="form-group">
+                <label>Observations and Notes:</label>
+                <textarea class="textarea" placeholder="Record participant behavior, comments, and issues..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Key Issues Encountered:</label>
+                <textarea class="textarea" placeholder="• Issue 1&#10;• Issue 2&#10;• Issue 3"></textarea>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <h3>Task 2: Campus Event Parking (Moderate)</h3>
+            <div class="time-row">
+                <div class="form-group">
+                    <label>Start Time:</label>
+                    <input type="time" class="input-line">
+                </div>
+                <div class="form-group">
+                    <label>End Time:</label>
+                    <input type="time" class="input-line">
+                </div>
+                <div class="form-group">
+                    <label>Total Time (min):</label>
+                    <input type="number" class="input-line" placeholder="Minutes">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Task Completion:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> Complete Success</label>
+                    <label class="checkbox-item"><input type="checkbox"> Partial Success</label>
+                    <label class="checkbox-item"><input type="checkbox"> Failure</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Completion Percentage:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> 0%</label>
+                    <label class="checkbox-item"><input type="checkbox"> 25%</label>
+                    <label class="checkbox-item"><input type="checkbox"> 50%</label>
+                    <label class="checkbox-item"><input type="checkbox"> 75%</label>
+                    <label class="checkbox-item"><input type="checkbox"> 100%</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Critical Errors (count):</label>
+                    <input type="number" class="input-line" placeholder="0">
+                </div>
+                <div class="form-group">
+                    <label>Non-Critical Errors (count):</label>
+                    <input type="number" class="input-line" placeholder="0">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>SEQ Score (1-7): <span class="metric-tag">1 = Very Difficult, 7 = Very Easy</span></label>
+                <input type="number" class="input-line" min="1" max="7" placeholder="Score">
+            </div>
+            <div class="form-group">
+                <label>Observations and Notes:</label>
+                <textarea class="textarea" placeholder="Record participant behavior, comments, and issues..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Key Issues Encountered:</label>
+                <textarea class="textarea" placeholder="• Issue 1&#10;• Issue 2&#10;• Issue 3"></textarea>
+            </div>
+        </div>
+
+        <div class="task-section">
+            <h3>Task 3: Emergency Navigation to Vehicle (Complex)</h3>
+            <div class="time-row">
+                <div class="form-group">
+                    <label>Start Time:</label>
+                    <input type="time" class="input-line">
+                </div>
+                <div class="form-group">
+                    <label>End Time:</label>
+                    <input type="time" class="input-line">
+                </div>
+                <div class="form-group">
+                    <label>Total Time (min):</label>
+                    <input type="number" class="input-line" placeholder="Minutes">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Task Completion:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> Complete Success</label>
+                    <label class="checkbox-item"><input type="checkbox"> Partial Success</label>
+                    <label class="checkbox-item"><input type="checkbox"> Failure</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Completion Percentage:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-item"><input type="checkbox"> 0%</label>
+                    <label class="checkbox-item"><input type="checkbox"> 25%</label>
+                    <label class="checkbox-item"><input type="checkbox"> 50%</label>
+                    <label class="checkbox-item"><input type="checkbox"> 75%</label>
+                    <label class="checkbox-item"><input type="checkbox"> 100%</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Critical Errors (count):</label>
+                    <input type="number" class="input-line" placeholder="0">
+                </div>
+                <div class="form-group">
+                    <label>Non-Critical Errors (count):</label>
+                    <input type="number" class="input-line" placeholder="0">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>SEQ Score (1-7): <span class="metric-tag">1 = Very Difficult, 7 = Very Easy</span></label>
+                <input type="number" class="input-line" min="1" max="7" placeholder="Score">
+            </div>
+            <div class="form-group">
+                <label>Observations and Notes:</label>
+                <textarea class="textarea" placeholder="Record participant behavior, comments, and issues..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Key Issues Encountered:</label>
+                <textarea class="textarea" placeholder="• Issue 1&#10;• Issue 2&#10;• Issue 3"></textarea>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Post-Test Summary</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>SUS Score (0-100):</label>
+                    <input type="number" class="input-line" min="0" max="100" placeholder="Calculate from SUS form">
+                </div>
+                <div class="form-group">
+                    <label>Overall Session Duration (minutes):</label>
+                    <input type="number" class="input-line" placeholder="Total minutes">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>General Observations:</label>
+                <textarea class="textarea" placeholder="Overall impressions and patterns observed during the session..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Participant Quotes or Comments:</label>
+                <textarea class="textarea" placeholder="Record memorable or insightful comments from the participant..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Recurring Patterns or Issues:</label>
+                <textarea class="textarea" placeholder="Patterns that appeared across multiple tasks..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Recommendations for Improvement:</label>
+                <textarea class="textarea" placeholder="Design improvements based on this session..."></textarea>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Debriefing Responses</h2>
+            <div class="form-group">
+                <label>1. What did you like most about the app?</label>
+                <textarea class="textarea"></textarea>
+            </div>
+            <div class="form-group">
+                <label>2. What did you like least or find most frustrating?</label>
+                <textarea class="textarea"></textarea>
+            </div>
+            <div class="form-group">
+                <label>3. Was there anything that surprised you or didn't work as expected?</label>
+                <textarea class="textarea"></textarea>
+            </div>
+            <div class="form-group">
+                <label>4. What features would you add or change?</label>
+                <textarea class="textarea"></textarea>
+            </div>
+            <div class="form-group">
+                <label>5. Would you use this app? Why or why not?</label>
+                <textarea class="textarea"></textarea>
+            </div>
+            <div class="form-group">
+                <label>6. Other comments or suggestions:</label>
+                <textarea class="textarea"></textarea>
+            </div>
+        </div>
+
+        <div style="text-align: center; padding: 2rem; color: var(--gray); font-style: italic;">
+            End of Session
+        </div>
+    </div>
+</body>
+</html>
